@@ -1,8 +1,9 @@
 # Game TIC-TAC-TOE
 
-This application allow you play game tic-tac-toe with computer. So far computer runs its moves random
-so its very easy to win this games. In he future application will be developed to version in which computer
-will played using feedforward neural network.
+This application allow you play tic-tac-toe game against computer.
+The computer plays random moves so probably it will be very easy to win.
+In he future application will be developed to version in which computer
+will be playing using feedforward neural network.
 
 # Getting Started with Create React App
 
