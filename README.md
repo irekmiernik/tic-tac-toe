@@ -1,3 +1,9 @@
+# Game tic-tac-toe
+
+This application allow you play game tic-tac-toe with computer. So far computer runs its moves random
+so its very easy to win this games. In he future application will be developed to version in which computer
+will played using feedforward neural network.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -13,11 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
