@@ -1,4 +1,4 @@
-# Game tic-tac-toe
+# Game TIC-TAC-TOE
 
 This application allow you play game tic-tac-toe with computer. So far computer runs its moves random
 so its very easy to win this games. In he future application will be developed to version in which computer
