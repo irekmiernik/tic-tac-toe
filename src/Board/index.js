@@ -32,8 +32,10 @@ export default function Board({ currentMove, squares, onPlay }) {
     function computerMove(squares) {
 
         if (!calculateWinner(squares)) {
+
             for (let i = 0; i < boardLines.length; i++) {
-                if (boardLines[i].filter((line) => line === "O").length > 1) {
+
+                if (boardLines[i].filter((line) => squares[line] === "O").length > 1) {
                     for (let j = 0; j < 3; j++) {
                         if (!squares[boardLines[i][j]]) {
                             squares[boardLines[i][j]] = "O";
@@ -41,7 +43,19 @@ export default function Board({ currentMove, squares, onPlay }) {
                         };
                     };
                 };
-            }
+            };
+
+            for (let i = 0; i < boardLines.length; i++) {
+                if (boardLines[i].filter((line) => squares[line] === "X").length > 1) {
+                    for (let j = 0; j < 3; j++) {
+                        if (!squares[boardLines[i][j]]) {
+                            squares[boardLines[i][j]] = "O";
+                            return;
+                        };
+                    };
+                };
+            };
+
             let number = getRandomIntInclusive(0, 8 - (currentMove * 2 + 1));
             let j = 0;
             for (let i = 0; i < squares.length; i++) {
