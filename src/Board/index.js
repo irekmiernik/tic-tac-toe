@@ -2,29 +2,65 @@ import Square from "../Square";
 
 export default function Board({ currentMove, squares, onPlay }) {
 
+    const boardLines = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
+    ];
+
+    function calculateWinner(squares) {
+        for (let i = 0; i < boardLines.length; i++) {
+            const [a, b, c] = boardLines[i];
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                return squares[a];
+            }
+        }
+        return null;
+    };
+
+    function calculateDraw(squares) {
+        for (let i = 0; i < squares.length; i++) {
+            if (!squares[i]) return null;
+        };
+        return true;
+    };
+
     function getRandomIntInclusive(min, max) {
         const minCeiled = Math.ceil(min);
         const maxFloored = Math.floor(max);
         return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
     }
 
+    function computerMove(squares) {
+
+        if (!calculateWinner(squares)) {
+            for (let i = 0; i < boardLines.length; i++) {
+                if (boardLines[i].filter((line) => line === "O").length > 1) {
+                    for (let j = 0; j < 3; j++) {
+                        if (!squares[boardLines[i][j]]) {
+                            squares[boardLines[i][j]] = "O";
+                            return;
+                        };
+                    };
+                };
+            }
+            let number = getRandomIntInclusive(0, 8 - (currentMove * 2 + 1));
+            let j = 0;
+            for (let i = 0; i < squares.length; i++) {
+                if (!squares[i]) {
+                    if (number === j) {
+                        squares[i] = "O";
+                        break;
+                    };
+                    j = j + 1;
+                };
+            };
+        }
+    };
+
     function handleClick(i) {
         if (!squares[i] && !calculateWinner(squares)) {
             const newSquares = squares.slice();
             newSquares[i] = "X";
-            if (!calculateWinner(newSquares)) {
-                let number = getRandomIntInclusive(0, 8 - (currentMove * 2 + 1));
-                let j = 0;
-                for (let i = 0; i < newSquares.length; i++) {
-                    if (!newSquares[i]) {
-                        if (number === j) {
-                            newSquares[i] = "O";
-                            break;
-                        };
-                        j = j + 1;
-                    };
-                };
-            };
+            computerMove(newSquares);
             onPlay(newSquares);
         };
     };
@@ -61,24 +97,4 @@ export default function Board({ currentMove, squares, onPlay }) {
             </div>
         </>
     );
-};
-
-function calculateWinner(squares) {
-    const winnerLines = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
-    ];
-    for (let i = 0; i < winnerLines.length; i++) {
-        const [a, b, c] = winnerLines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
-        }
-    }
-    return null;
-};
-
-function calculateDraw(squares) {
-    for (let i = 0; i < squares.length; i++) {
-        if (!squares[i]) return null;
-    };
-    return true;
 };
