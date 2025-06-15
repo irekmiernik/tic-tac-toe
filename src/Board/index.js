@@ -56,7 +56,24 @@ export default function Board({ currentMove, squares, onPlay }) {
                 };
             };
 
-            let number = getRandomIntInclusive(0, 8 - (currentMove * 2 + 1));
+            let emptySquresAmount = 8 - (currentMove * 2 + 1);
+            let number = 0;
+
+            if (emptySquresAmount >= 5) {
+                number = getRandomIntInclusive(0, 4);
+                let j = 0;
+                for (let i = 0; i < squares.length; i = i + 2) {
+                    if (!squares[i]) {
+                        if (number === j) {
+                            squares[i] = "O";
+                            return;
+                        };
+                        j = j + 1;
+                    };
+                };
+            }
+
+            number = getRandomIntInclusive(0, emptySquresAmount);
             let j = 0;
             for (let i = 0; i < squares.length; i++) {
                 if (!squares[i]) {
