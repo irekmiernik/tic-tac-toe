@@ -96,16 +96,22 @@ export default function Board({ currentMove, squares, onPlay }) {
         };
     };
 
-    let status = calculateWinner(squares);
-    if (status) {
-        if (status === "X") status = "Congratulation! You win!";
-        else status = "I am very sorry. You have lost!";
-    } else {
-        if (calculateDraw(squares)) {
-            status = "Game is over: draw";
-        } else {
-            status = "I am waiting for your turn, please!";
-        };
+    let status;
+    switch (calculateWinner(squares)) {
+        case "X":
+            status = "Congratulation! You win!";
+            break;
+        case "O":
+            status = "I am very sorry. You have lost!";
+            break;
+        default:
+            switch (calculateDraw(squares)) {
+                case true:
+                    status = "Game is over: draw";
+                    break;
+                default:
+                    status = "I am waiting for your turn, please!";
+            }
     }
 
     return (
