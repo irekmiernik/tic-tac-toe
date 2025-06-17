@@ -57,23 +57,21 @@ export default function Board({ currentMove, squares, onPlay }) {
             };
 
             let emptySquresAmount = 8 - (currentMove * 2 + 1);
-            let number = 0;
-
+            console.log(emptySquresAmount);
             if (emptySquresAmount >= 5) {
-                number = getRandomIntInclusive(0, 4);
-                let j = 0;
-                for (let i = 0; i < squares.length; i = i + 2) {
-                    if (!squares[i]) {
-                        if (number === j) {
-                            squares[i] = "O";
-                            return;
-                        };
-                        j = j + 1;
-                    };
-                };
-            }
+                let i = 2 * getRandomIntInclusive(0, 4);
+                console.log(i);
 
-            number = getRandomIntInclusive(0, emptySquresAmount);
+                if (!squares[i]) {
+                    squares[i] = "O";
+                    return;
+                };
+                if (i === 0) { i = 2 } else i = i - 2;
+                squares[i] = "O";
+                return;
+            };
+
+            const number = getRandomIntInclusive(0, emptySquresAmount);
             let j = 0;
             for (let i = 0; i < squares.length; i++) {
                 if (!squares[i]) {
@@ -84,7 +82,7 @@ export default function Board({ currentMove, squares, onPlay }) {
                     j = j + 1;
                 };
             };
-        }
+        };
     };
 
     function handleClick(i) {
