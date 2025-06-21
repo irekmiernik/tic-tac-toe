@@ -1,3 +1,5 @@
+import { SquareButton } from "./styled";
+
 export default function Square({ value, onSquareClick }) {
-    return <button className="square" onClick={onSquareClick}>{value}</button>;
-}
+    return <SquareButton onClick={onSquareClick}>{value}</SquareButton>;
+};

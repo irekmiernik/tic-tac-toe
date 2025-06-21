@@ -46,23 +46,6 @@ ul {
   padding-inline-start: 20px;
 }
 
-.square {
-  background-color: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 50px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 100px;
-  max-height: 100vw;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 100px;
-  max-width: 100vw;
-}
-
 .board-row:after {
   clear: both;
   content: '';
@@ -84,11 +67,17 @@ ul {
   }
 }
 
+.game-board {
+  display: flexbox;
+}
+
 .game-info {
   margin-left: 20px;
 }
 
 .board-row {
+  max-width: 300px;
+  max-height: 100px;
   display: flex;
-  flex-direction: row;
+  flex: 1 1 20px;
 }
